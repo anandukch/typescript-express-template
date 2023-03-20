@@ -21,6 +21,19 @@ class Prompt {
     return files;
   }
 
+  envFiles() {
+    return `
+    # dotenv environment variable files
+    .env
+    .env.dev
+    .env.development.local
+    .env.test
+    .env.test.local
+    .env.production.local
+    .env.local
+    `
+  }
+
   promptUser() {
     this.prompt(this.questions).then((answers) => {
       const projectName = answers["projectName"];
@@ -29,6 +42,8 @@ class Prompt {
       const __dirname = path.dirname(__filename);
       const template = `${__dirname}/boilerplates/${projectType}`;
       const projectPath = this.createFolder(template, projectName);
+      const defaultIgnore = `${__dirname}/sample.txt`;
+      fse.appendFile(path.join(projectPath, ".gitignore"), fse.readFileSync(defaultIgnore).toString())
       let packageJson = path.join(projectPath, "package.json");
       let packageObj = fse.readJsonSync(packageJson);
       packageObj.name = projectName;
