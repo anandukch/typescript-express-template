@@ -13,6 +13,14 @@ class Prompt {
     this.prompt = inquirer.prompt;
   }
 
+  avaliableProjectTypes() {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const template = `${__dirname}/boilerplates`;
+    const files = fs.readdirSync(template);
+    return files;
+  }
+
   promptUser() {
     this.prompt(this.questions).then((answers) => {
       const projectName = answers["projectName"];
