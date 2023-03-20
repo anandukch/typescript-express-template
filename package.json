@@ -1,6 +1,6 @@
 {
-  "name": "express-typescript",
-  "version": "1.0.0",
+  "name": "typescript-express-oops",
+  "version": "1.0.2",
   "description": "",
   "type": "module",
   "main": "index.js",
