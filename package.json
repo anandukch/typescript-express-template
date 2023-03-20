@@ -9,8 +9,21 @@
     "start": "node index.js"
   },
   "bin": {
-    "express-typescript-boiler": "./index.js"
+    "create-typescript-express": "./index.js"
   },
+  "keywords": [
+    "express",
+    "node",
+    "typescript",
+    "oops",
+    "server",
+    "backend",
+    "container",
+    "docker",
+    "boilerplate",
+    "generator",
+    "template"
+  ],
   "author": "Anandu S",
   "license": "ISC",
   "dependencies": {
