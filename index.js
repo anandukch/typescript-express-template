@@ -29,6 +29,9 @@ class Prompt {
       choices: this.avaliableProjectTypes()
     }
   ]
+
+  dependencyInstall = "bcrypt body-parser class-transformer class-validator cookie-parser cors dotenv envalid express jsonwebtoken mongoose"
+  devDependencyInstall = "@types/bcrypt @types/chai @types/cookie-parser @types/express @types/jsonwebtoken @types/lodash @types/mocha @types/node @types/sinon @types/supertest @typescript-eslint/eslint-plugin @typescript-eslint/parser chai eslint cross-env husky mocha rimraf sinon ts-mocha ts-node-dev typescript"
   
   avaliableProjectTypes() {
     const __filename = fileURLToPath(import.meta.url);
@@ -50,6 +53,11 @@ class Prompt {
       fse.appendFile(path.join(projectPath, ".gitignore"), fse.readFileSync(defaultIgnore).toString())
       let packageJson = path.join(projectPath, "package.json");
       let packageObj = fse.readJsonSync(packageJson);
+      // Object.assign(packageObj.dependencies, this.dependencyInstall.split(" ").reduce((acc, cur) => {
+      //   acc[cur] = "latest";
+      //   return acc;
+      // }, {}));
+      // console.log(packageObj.dependencies);
       packageObj.name = projectName;
       fs.writeFileSync(packageJson, JSON.stringify(packageObj));
       console.log(chalk.green(`${projectName} successfully created`))

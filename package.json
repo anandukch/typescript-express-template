@@ -1,6 +1,6 @@
 {
   "name": "typescript-express-oops",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "type": "module",
   "main": "index.js",
@@ -36,7 +36,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.2.0",
-    "fs-extra": "^11.1.0",
+    "fs-extra": "^11.1.1",
     "inquirer": "^9.1.5"
   },
   "devDependencies": {
