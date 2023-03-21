@@ -14,6 +14,6 @@ Install node-express with npm globally
 Once you installed it globally, just type this command where you want to generate the boilerplate.
 
 ```bash
-create-typescript-express
+npx create-typescript-express
 
 ```

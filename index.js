@@ -11,7 +11,6 @@ class Prompt {
   constructor() {
     this.prompt = inquirer.prompt;
   }
-
   questions = [
     {
       type: 'input',
@@ -30,6 +29,7 @@ class Prompt {
       choices: this.avaliableProjectTypes()
     }
   ]
+  
   avaliableProjectTypes() {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
