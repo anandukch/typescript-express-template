@@ -2,9 +2,18 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import express from "express";
 import mongoose from "mongoose";
-import { CREDENTIALS, DB_URL, NODE_ENV, ORIGIN, PORT } from "./config";
+import {
+  CREDENTIALS,
+  DB_URL,
+  LOG_FORMAT,
+  NODE_ENV,
+  ORIGIN,
+  PORT,
+} from "./config";
 import { dbConnection } from "./databases";
 import cors from "cors";
+import morgan from "morgan";
+import { logger, stream } from "./utils/logger";
 import { Routes } from "./interfaces/routes.interface";
 class App {
   public app: express.Application;
@@ -22,6 +31,7 @@ class App {
   }
 
   private initializeMiddlewares() {
+    this.app.use(morgan(LOG_FORMAT, { stream }));
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());
     this.app.use(express.json());
@@ -40,16 +50,21 @@ class App {
     if (this.env !== "production") {
       mongoose.set("debug", true);
     }
-    mongoose.connect(dbConnection.url).then(() => {
-      console.log("📦 Connected to database");
-    });
+    mongoose
+      .connect(dbConnection.url)
+      .then(() => {
+        logger.info("📦 Connected to database");
+      })
+      .catch((err) => {
+        logger.error(`❌ Error connecting to database: ${err}`);
+      });
   }
   public listen() {
     this.app.listen(this.port, () => {
-      console.log(`=================================`);
-      console.log(`======= ENV: ${this.env} =======`);
-      console.log(`🚀 App listening on the port ${this.port}`);
-      console.log(`=================================`);
+      logger.info(`=================================`);
+      logger.info(`======= ENV: ${this.env} =======`);
+      logger.info(`🚀 App listening on the port ${this.port}`);
+      logger.info(`=================================`);
     });
   }
 }
