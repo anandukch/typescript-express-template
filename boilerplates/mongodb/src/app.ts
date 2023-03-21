@@ -1,16 +1,17 @@
-import * as bodyParser from "body-parser";
-import * as cookieParser from "cookie-parser";
-import * as express from "express";
-import * as mongoose from "mongoose";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import express from "express";
+import mongoose from "mongoose";
 import { CREDENTIALS, DB_URL, NODE_ENV, ORIGIN, PORT } from "./config";
 import { dbConnection } from "./databases";
-import * as cors from "cors";
+import cors from "cors";
+import { Routes } from "./interfaces/routes.interface";
 class App {
   public app: express.Application;
   public env: string;
   public port: string | number;
 
-  constructor(routes: any[]) {
+  constructor(routes: Routes[]) {
     this.app = express();
     this.env = NODE_ENV || "development";
     this.port = PORT || 3000;
@@ -30,7 +31,7 @@ class App {
     );
   }
 
-  private initializeRoutes(routes: any[]) {
+  private initializeRoutes(routes: Routes[]) {
     routes.forEach((route) => {
       this.app.use("/", route.router);
     });
