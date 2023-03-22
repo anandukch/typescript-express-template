@@ -16,8 +16,7 @@
     "noEmit": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "importHelpers": true,
-    "baseUrl": "src",
+    "importHelpers": true
   },
   "include": [
     "src/**/*",
