@@ -3,15 +3,15 @@
 
 ## Installation
 
-Install node-express with npm globally
+Install globally with npm
 
 ```bash
   npm install -g typescript-express-oops 
 ```
 
-## Usage/Examples
+## Usage
 
-Once you installed it globally, just type this command where you want to generate the boilerplate.
+To generate the template type
 
 ```bash
 npx create-typescript-express
